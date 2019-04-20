@@ -1,0 +1,160 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="drabikp (generated)" id="1555748672170-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-2">
+        <createTable tableName="BAND">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="BANDPK"/>
+            </column>
+            <column name="createTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updateTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="band_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-3">
+        <createTable tableName="DEBT">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="DEBTPK"/>
+            </column>
+            <column name="createTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updateTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="original_amount" type="numeric(19, 2)"/>
+            <column name="band_id" type="BIGINT"/>
+            <column name="owner_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-4">
+        <createTable tableName="EVENT">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="EVENTPK"/>
+            </column>
+            <column name="createTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updateTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="date_time" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="event_name" type="VARCHAR(255)"/>
+            <column name="negotiated_amount" type="numeric(19, 2)"/>
+            <column name="event_type_id" type="BIGINT"/>
+            <column name="venue_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-5">
+        <createTable tableName="EVENT_TYPE">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="EVENT_TYPEPK"/>
+            </column>
+            <column name="event_type_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-6">
+        <createTable tableName="FINANCIAL_OPERATION">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="FINANCIAL_OPERATIONPK"/>
+            </column>
+            <column name="createTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updateTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="from_id" type="BIGINT"/>
+            <column name="from_type" type="VARCHAR(255)"/>
+            <column name="to_id" type="BIGINT"/>
+            <column name="to_type" type="VARCHAR(255)"/>
+            <column name="financial_operation_category_id" type="BIGINT"/>
+            <column name="related_to_id" type="BIGINT"/>
+            <column name="event_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-7">
+        <createTable tableName="FINANCIAL_OPERATION_CATEGORY">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="FINANCIAL_OPERATION_CATEGORYPK"/>
+            </column>
+            <column name="from_required" type="BOOLEAN"/>
+            <column name="financial_operation_category_name" type="VARCHAR(255)"/>
+            <column name="to_required" type="BOOLEAN"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-8">
+        <createTable tableName="MEMBER">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="MEMBERPK"/>
+            </column>
+            <column name="createTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="updateTimestamp" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="member_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-9">
+        <createTable tableName="TAG">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="TAGPK"/>
+            </column>
+            <column name="tag_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-10">
+        <createTable tableName="VENUE">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="VENUEPK"/>
+            </column>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="gps_lon" type="FLOAT8"/>
+            <column name="gps_lat" type="FLOAT8"/>
+            <column name="venue_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-11">
+        <createTable tableName="event_tag">
+            <column name="event_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="tag_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-12">
+        <createTable tableName="financial_operation_tag">
+            <column name="financial_operation_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="tag_id" type="BIGINT">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-13">
+        <addForeignKeyConstraint baseColumnNames="owner_id" baseTableName="DEBT" constraintName="FK8tlgh77xj9ovaw1giq8s4let8" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="MEMBER" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-14">
+        <addForeignKeyConstraint baseColumnNames="tag_id" baseTableName="financial_operation_tag" constraintName="FK9mcysyii2olvt4gun467k1agf" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="TAG" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-15">
+        <addForeignKeyConstraint baseColumnNames="venue_id" baseTableName="EVENT" constraintName="FKd4arcv63lelk2qvpbdpej1k3m" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="VENUE" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-16">
+        <addForeignKeyConstraint baseColumnNames="event_type_id" baseTableName="EVENT" constraintName="FKepg6pyvvkn2i97hbyes036rmm" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="EVENT_TYPE" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-17">
+        <addForeignKeyConstraint baseColumnNames="band_id" baseTableName="DEBT" constraintName="FKh98polta6ywq9ijk8r0sdb20j" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="BAND" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-18">
+        <addForeignKeyConstraint baseColumnNames="financial_operation_id" baseTableName="financial_operation_tag" constraintName="FKipr4e1n84ws9s1fdtqt3wntou" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="FINANCIAL_OPERATION" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-19">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="event_tag" constraintName="FKlbivt3rrw4a6erosjuas59s79" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="EVENT" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-20">
+        <addForeignKeyConstraint baseColumnNames="related_to_id" baseTableName="FINANCIAL_OPERATION" constraintName="FKm0clshs8js1sm555vm66x17ci" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="FINANCIAL_OPERATION" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-21">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="FINANCIAL_OPERATION" constraintName="FKm82aqijkue4wqiplff47ol6sb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="EVENT" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-22">
+        <addForeignKeyConstraint baseColumnNames="tag_id" baseTableName="event_tag" constraintName="FKpo39lb4xdp0xxmjut380edrf9" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="TAG" validate="true"/>
+    </changeSet>
+    <changeSet author="drabikp (generated)" id="1555748672170-23">
+        <addForeignKeyConstraint baseColumnNames="financial_operation_category_id" baseTableName="FINANCIAL_OPERATION" constraintName="FKrj89mw5f8m8ttyonlbk0i97wb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="FINANCIAL_OPERATION_CATEGORY" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
